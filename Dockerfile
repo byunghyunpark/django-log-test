@@ -16,15 +16,23 @@ WORKDIR     /srv/app
 
 RUN         pip3 install -r requirements.txt
 RUN         pip3 install uwsgi
-ENV         DEBUG="False" \
-            STATIC="s3" \
-            LOG="INFO"
 
 COPY        .conf/uwsgi-app.ini         /etc/uwsgi/sites/app.ini
 COPY        .conf/nginx.conf            /etc/nginx/nginx.conf
 COPY        .conf/nginx-app.conf        /etc/nginx/sites-available/app.conf
 COPY        .conf/supervisor-app.conf   /etc/supervisor/conf.d/
 COPY        .conf/docker-entrypoint.sh  /
+
+ARG         AWS_ACCESS_KEY_ID
+ARG         AWS_SECRET_ACCESS_KEY
+ARG         AWS_DEFAULT_REGION
+
+ENV         DEBUG="False" \
+            STATIC="s3" \
+            LOG="INFO" \
+            AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
+            AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
+            AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
 
 RUN         ln -s /etc/nginx/sites-available/app.conf   /etc/nginx/sites-enabled/app.conf
 

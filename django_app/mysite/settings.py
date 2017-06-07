@@ -207,15 +207,15 @@ LOGGING = {
             'class': 'watchtower.CloudWatchLogHandler',
             'formatter': 'verbose',
         },
-        # 'console': {
-        #     'level': 'INFO',
-        #     'class': 'logging.StreamHandler',
-        # },
-        # 'file': {
-        #     'level': 'DEBUG',
-        #     'class': 'logging.FileHandler',
-        #     'filename': 'debug.log',
-        # }
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        }
     },
     'loggers': {
         'django': {
@@ -223,10 +223,10 @@ LOGGING = {
             'level': 'INFO',
             'propagate': True,
         },
-        # 'django.watchtower': {
-        #     'handlers': ['watchtower'],
-        #     'level': DJANGO_LOG_LEVEL,
-        #     'propagate': False,
-        # }
+        'django.blog': {
+            'handlers': ['watchtower'],
+            'level': DJANGO_LOG_LEVEL,
+            'propagate': False,
+        }
     }
 }
