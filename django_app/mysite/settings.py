@@ -186,47 +186,47 @@ DJANGO_LOG_LEVEL = os.environ.get('LOG', '')
 if not DJANGO_LOG_LEVEL:
     DJANGO_LOG_LEVEL = 'DEBUG'
 print('DJANGO_LOG_LEVEL =', DJANGO_LOG_LEVEL)
-
-
-# logging
-# http://www.kidstrythisathome.com/2017/03/django-logging-with-aws-cloudwatch-and-watchtower.html
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
-    },
-    'handlers': {
-        'watchtower': {
-            'level': 'DEBUG',
-            'class': 'watchtower.CloudWatchLogHandler',
-            'formatter': 'verbose',
-        },
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-        },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'debug.log',
-        }
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['watchtower'],
-            'level': 'INFO',
-            'propagate': True,
-        },
-        'django.blog': {
-            'handlers': ['watchtower'],
-            'level': DJANGO_LOG_LEVEL,
-            'propagate': False,
-        }
-    }
-}
+#
+#
+# # logging
+# # http://www.kidstrythisathome.com/2017/03/django-logging-with-aws-cloudwatch-and-watchtower.html
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+#         },
+#         'simple': {
+#             'format': '%(levelname)s %(message)s'
+#         },
+#     },
+#     'handlers': {
+#         'watchtower': {
+#             'level': 'DEBUG',
+#             'class': 'watchtower.CloudWatchLogHandler',
+#             'formatter': 'verbose',
+#         },
+#         'console': {
+#             'level': 'INFO',
+#             'class': 'logging.StreamHandler',
+#         },
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': 'debug.log',
+#         }
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['watchtower'],
+#             'level': 'INFO',
+#             'propagate': True,
+#         },
+#         'django.blog': {
+#             'handlers': ['watchtower'],
+#             'level': DJANGO_LOG_LEVEL,
+#             'propagate': False,
+#         }
+#     }
+# }

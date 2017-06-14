@@ -36,6 +36,6 @@ ENV         DEBUG="False" \
 
 RUN         ln -s /etc/nginx/sites-available/app.conf   /etc/nginx/sites-enabled/app.conf
 
-EXPOSE      80
+EXPOSE      80  1443
 CMD         supervisord -n
 ENTRYPOINT  ["/docker-entrypoint.sh"]
