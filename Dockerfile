@@ -20,7 +20,7 @@ RUN         pip3 install uwsgi
 COPY        .conf/uwsgi-app.ini         /etc/uwsgi/sites/app.ini
 COPY        .conf/nginx.conf            /etc/nginx/nginx.conf
 COPY        .conf/nginx-app.conf        /etc/nginx/sites-available/app.conf
-COPY        .conf/supervisor-app.conf   /etc/supervisor/conf.d/
+COPY        .conf/supervisor-app.conf   /etc/supervisor/conf.d/supervisor.conf
 COPY        .conf/docker-entrypoint.sh  /
 
 ARG         AWS_ACCESS_KEY_ID
@@ -37,5 +37,5 @@ ENV         DEBUG="False" \
 RUN         ln -s /etc/nginx/sites-available/app.conf   /etc/nginx/sites-enabled/app.conf
 
 EXPOSE      80  443
-CMD         supervisord -n
+CMD         supervisord -n -c /etc/supervisor/conf.d/supervisor.conf
 ENTRYPOINT  ["/docker-entrypoint.sh"]
